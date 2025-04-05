@@ -1,0 +1,277 @@
+.boq-table-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;  /* Ensure vertical scrolling works properly */
+  max-height: calc(100vh - 120px); /* Limit height for scrolling, adjust as needed */
+  margin-top: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: var(--card-bg);
+  position: relative;
+}
+
+.boq-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed !important; /* Force fixed layout */
+  font-size: 18px; /* Change from 14px to your desired size */
+  color: var(--text-color);
+  overflow: hidden; /* Prevent table from overflowing its container */
+}
+
+/* Enhanced sticky header implementation */
+.boq-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.boq-table th {
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-dark);
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  z-index: 2;  /* Higher z-index to stay above content */
+  text-transform: uppercase;
+  font-size: 14px; /* Change from 13px to your desired size */
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #4d4d4d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensures the sticky header has clean bottom edges */
+.boq-table thead::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #4d4d4d;
+}
+
+.boq-table th,
+.boq-table td {
+  border: none;
+  padding: 12px 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boq-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+}
+
+.boq-table tr:nth-child(even) {
+  background-color: rgba(117, 117, 117, 0.1);
+}
+
+.boq-table tr:hover {
+  background-color: rgba(117, 117, 117, 0.2);
+}
+
+.boq-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.align-left {
+  text-align: left !important;
+}
+
+.align-center {
+  text-align: center !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+/* Column width classes */
+.col-width-small {
+  width: 80px !important;
+  max-width: 80px !important;
+}
+
+.col-width-medium {
+  width: 150px !important;
+  max-width: 150px !important;
+}
+
+.col-width-large {
+  width: 250px !important;
+  max-width: 250px !important;
+}
+
+.col-width-xl {
+  width: 350px !important;
+  max-width: 350px !important;
+}
+
+/* Special column width for .รายการ */
+.col-width-item {
+  width: 60% !important;
+  max-width: 60% !important;
+}
+
+/* First column width - smaller */
+.col-first {
+  width: 10% !important;
+  max-width: 10% !important;
+}
+
+/* Second column width - now main column */
+.col-second {
+  width: 50% !important;
+  max-width: 50% !important;
+  text-align: left !important;
+}
+
+/* Add rounded corners to the table's first and last rows */
+.boq-table thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.boq-table thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.boq-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.boq-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+/* Add styles for empty table state */
+.boq-table-empty {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Add subtle highlight for column matching search */
+.highlight-cell {
+  position: relative;
+  background-color: rgba(180, 180, 180, 0.2);
+}
+
+.highlight-cell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(180, 180, 180, 0.4);
+  pointer-events: none;
+}
+
+/* Search highlight style */
+.search-highlight {
+  color: white; /* Text becomes white for contrast */
+  font-weight: 600;
+  background-color: #c04802; /* Dark red background */
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.boq-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.boq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5px;
+}
+
+.boq-info {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.last-loaded {
+  color: var(--primary-light);
+  font-weight: 500;
+}
+
+.reload-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reload-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.reload-button:disabled {
+  background-color: #4d4d4d;
+  cursor: not-allowed;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(150, 150, 150, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-light);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message, .no-data-message {
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+}
+
+.error-message p {
+  color: #ff6b6b;
+  font-size: 16px;
+}
+
+.no-data-message p {
+  color: var(--text-muted);
+  font-style: italic;
+}
